@@ -7,13 +7,14 @@ LDFLAGS = -framework CoreVideo -framework IOKit -framework Cocoa -framework GLUT
 # Directories
 SRC_DIR = src
 BUILD_DIR = build
+BIN_FILE = sim
 
 # Source and object files
 SOURCE_FILE = $(SRC_DIR)/main.cpp
 OBJECT_FILE = $(BUILD_DIR)/main.o
 
 # Output executable
-EXECUTABLE = $(BUILD_DIR)/app
+EXECUTABLE = $(BUILD_DIR)/$(BIN_FILE)
 
 # Default target
 all: $(BUILD_DIR) $(EXECUTABLE)
