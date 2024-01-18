@@ -1,12 +1,16 @@
-#include <Eigen/Dense>
-#include <raylib/raylib.h>
+#include <chrono>
 
-#include "constants.h"
+#include "global.hpp"
 
 
 int main(void)
 {
-    SetTraceLogLevel(LOG_WARNING); 
+    set_raylib_log_level(LOG_WARNING);
+
+    auto start_time = std::chrono::high_resolution_clock::now();
+
+    const float dt = 1.0f / 60.0f;
+    float last_timestamp = dt;
 
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Evolution Simulation");
 

@@ -10,8 +10,8 @@ BUILD_DIR = build
 BIN_FILE = sim
 
 # Source and object files
-SOURCE_FILE = $(SRC_DIR)/main.cpp
-OBJECT_FILE = $(BUILD_DIR)/main.o
+SOURCES = $(wildcard $(SRC_DIR)/*.cpp)
+OBJECTS = $(SOURCES:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
 
 # Output executable
 EXECUTABLE = $(BUILD_DIR)/$(BIN_FILE)
@@ -24,12 +24,12 @@ $(BUILD_DIR):
 	@mkdir -p $(BUILD_DIR)
 
 # Linking the executable
-$(EXECUTABLE): $(OBJECT_FILE)
-	$(CXX) $(OBJECT_FILE) -o $(EXECUTABLE) $(LDFLAGS)
+$(EXECUTABLE): $(OBJECTS)
+	$(CXX) $^ -o $@ $(LDFLAGS)
 
 # Compiling source files
-$(OBJECT_FILE): $(SOURCE_FILE)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SOURCE_FILE) -o $(OBJECT_FILE)
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 # Clean
 clean:
