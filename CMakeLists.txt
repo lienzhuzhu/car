@@ -13,7 +13,7 @@ include_directories(${INCLUDE_DIR})
 
 # Add the executable
 file(GLOB SOURCES "${SOURCE_DIR}/*.cpp")
-add_executable(app ${SOURCES})
+add_executable(sim ${SOURCES})
 
 find_package (Eigen3 3.3 REQUIRED NO_MODULE)
 
@@ -27,4 +27,4 @@ find_library(IOKIT_LIBRARY IOKit)
 find_library(COREVIDEO_LIBRARY CoreVideo)
 
 # Link the frameworks and the raylib library to your project
-target_link_libraries(app Eigen3::Eigen ${COCOA_LIBRARY} ${GLUT_LIBRARY} ${OPENGL_LIBRARY} ${IOKIT_LIBRARY} ${COREVIDEO_LIBRARY} ${RAYLIB_LIBRARY})
+target_link_libraries(sim Eigen3::Eigen ${COCOA_LIBRARY} ${GLUT_LIBRARY} ${OPENGL_LIBRARY} ${IOKIT_LIBRARY} ${COREVIDEO_LIBRARY} ${RAYLIB_LIBRARY})
