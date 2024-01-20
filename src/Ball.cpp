@@ -18,10 +18,10 @@ Ball::Ball(Vector2 position, int radius, Color color)
     _color = color;
 }
 
-void Ball::update(double dt)
+void Ball::update(Vector2 direction, double velocity, double dt)
 {
-    double velocity = 100;
-    _position.x += velocity * dt;
+    _position.x += direction.x * velocity * dt;
+    _position.y += direction.y * velocity * dt;
 }
 
 void Ball::render(double remainder)
@@ -35,4 +35,9 @@ void Ball::render(double remainder)
 void Ball::set_prev_state()
 {
     _prev_state = _position;
+}
+
+Vector2 Ball::get_position()
+{
+    return _position;
 }

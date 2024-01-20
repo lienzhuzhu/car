@@ -16,9 +16,10 @@ public:
     Ball &operator=(const Ball &) = default;
     ~Ball() = default;
 
-    void update(double dt);
+    void update(Vector2 direction, double velocity, double dt);
     void render(double remainder);
     void set_prev_state(void);
+    Vector2 get_position(void);
 
 private:
     Vector2 _position;
