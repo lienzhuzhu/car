@@ -1,9 +1,10 @@
 #pragma once
 
-#include <raylib/raylib.h>
+#include <raylib.h>
 #include <Eigen/Dense>
 
 #define SCREEN_WIDTH    800
 #define SCREEN_HEIGHT   800
 
-void set_raylib_log_level(int log_level);
+#define MIN_FPS         10
+#define TARGET_FPS      60.f
