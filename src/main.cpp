@@ -52,13 +52,12 @@ int main(void)
 
             ClearBackground(RAYWHITE);
 
-
             BeginMode2D(camera);
 
                 DrawRectangleV({10.f, 10.f}, {10.f, 10.f}, RED);
-                DrawRectangleV({GetScreenWidth()-15.f, 10.f}, {10.f, 10.f}, BLUE);
-                DrawRectangleV({10.f, GetScreenHeight()-15.f}, {10.f, 10.f}, BLUE);
-                DrawRectangleV({GetScreenWidth()-15.f, GetScreenHeight()-15.f}, {10.f, 10.f}, RED);
+                DrawRectangleV({GetScreenWidth()-20.f, 10.f}, {10.f, 10.f}, BLUE);
+                DrawRectangleV({10.f, GetScreenHeight()-20.f}, {10.f, 10.f}, BLUE);
+                DrawRectangleV({GetScreenWidth()-20.f, GetScreenHeight()-20.f}, {10.f, 10.f}, RED);
 
                 ball.render(accumulator / dt);
 
