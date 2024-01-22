@@ -20,15 +20,15 @@ public:
     void update(Vector2 direction, double velocity, double dt);
     void render(double remainder);
     void set_prev_state(void);
-    Vector2 get_position(void);
+    Vector2 get_center(void);
 
 private:
     typedef struct {
-
+        /* position fields and such */
     } Car_State;
 
     Car_State _curr_state;
-    Car_State _prev_state;
+    Car_State _prev_state; // for render interpolation
     Color _color;
 };
 
