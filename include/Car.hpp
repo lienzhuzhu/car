@@ -23,10 +23,13 @@ public:
     Vector2 get_position(void);
 
 private:
-    Vector2 _position;
-    int _radius;
+    typedef struct {
+
+    } Car_State;
+
+    Car_State _curr_state;
+    Car_State _prev_state;
     Color _color;
-    Vector2 _prev_state;
 };
 
 #endif // !CAR_HPP
