@@ -6,6 +6,7 @@
 #define CAR_HPP
 
 #include <raylib/raylib.h>
+#include "Track.hpp"
 
 
 class Car {
@@ -17,7 +18,7 @@ public:
     Car &operator=(const Car &) = default;
     ~Car() = default;
 
-    void update(Vector2 direction, double velocity, double dt);
+    void update(); // no idea, will also have to update rays
     void render(double remainder);
     void set_prev_state(void);
     Vector2 get_center(void);
@@ -27,6 +28,7 @@ private:
         /* position fields and such */
     } Car_State;
 
+    Track *track;
     Car_State _curr_state;
     Car_State _prev_state; // for render interpolation
     Color _color;
