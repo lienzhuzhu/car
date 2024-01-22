@@ -2,9 +2,11 @@
  * Ball class declaration
  */
 
-#pragma once
+#ifndef BALL_HPP
+#define BALL_HPP
 
-#include <raylib.h>
+#include <raylib/raylib.h>
+
 
 class Ball {
 public:
@@ -27,3 +29,5 @@ private:
     Color _color;
     Vector2 _prev_state;
 };
+
+#endif // !BALL_HPP
