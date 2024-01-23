@@ -22,7 +22,7 @@ Car::Car(Track *track) : _color(RED), _track(track)
             SCREEN_CENTER_X,
             SCREEN_CENTER_Y
         },
-        .steering_angle = 0.f
+        .steering_angle = 45.f
     };
 
     set_prev_state();
