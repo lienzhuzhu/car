@@ -3,7 +3,6 @@
  */
 
 #include "Ball.hpp"
-#include <raylib.h>
 
 
 Ball::Ball() : _radius(20), _color(RED)

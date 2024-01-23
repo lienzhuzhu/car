@@ -5,32 +5,38 @@
 #ifndef CAR_HPP
 #define CAR_HPP
 
+#include <raylib.h>
 #include <raylib/raylib.h>
 #include "Track.hpp"
 
+#define CAR_WIDTH   30.f
+#define CAR_LENGTH  60.f
 
 class Car {
 public:
-    Car();
+    Car() = default;
+    Car(Track *track);
     Car(Car &&) = default;
     Car(const Car &) = default;
     Car &operator=(Car &&) = default;
     Car &operator=(const Car &) = default;
     ~Car() = default;
 
-    void update(); // no idea, will also have to update rays
+    void update();
     void render(double remainder);
     void set_prev_state(void);
     Vector2 get_center(void);
 
 private:
     typedef struct {
-        /* position fields and such */
+        Vector2 center;
+        float steering_angle;
     } Car_State;
 
-    Track *track;
+    Track *_track;
     Car_State _curr_state;
     Car_State _prev_state; // for render interpolation
+    Rectangle _body;
     Color _color;
 };
 
