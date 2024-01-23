@@ -9,14 +9,6 @@
 
 Car::Car(Track *track) : _color(RED), _track(track)
 {
-    _body = { 
-        .x = SCREEN_CENTER_X, // NOTE: start the car in the center of the screen for now
-        .y = SCREEN_CENTER_Y,
-
-        .width = CAR_WIDTH,
-        .height = CAR_LENGTH
-    };
-
     _curr_state = {
         .center = {
             SCREEN_CENTER_X,
@@ -24,6 +16,15 @@ Car::Car(Track *track) : _color(RED), _track(track)
         },
         .steering_angle = 45.f
     };
+
+    _body = { 
+        .x = _curr_state.center.x, // NOTE: start the car in the center of the screen for now
+        .y = _curr_state.center.y,
+
+        .width = CAR_WIDTH,
+        .height = CAR_LENGTH
+    };
+
 
     set_prev_state();
 }
