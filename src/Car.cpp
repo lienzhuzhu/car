@@ -7,6 +7,11 @@
 #include "Car.hpp"
 
 
+#define ACCELERATION_RATE   5.f
+#define MAX_SPEED           150.f
+#define STEERING_RATE       1.f
+
+
 Car::Car(Track *track) : _color(RED), _track(track)
 {
     _curr_state = {
@@ -14,7 +19,11 @@ Car::Car(Track *track) : _color(RED), _track(track)
             SCREEN_CENTER_X,
             SCREEN_CENTER_Y
         },
-        .steering_angle = 45.f
+        .speed = 0.f,
+        .acceleration = ACCELERATION_RATE,
+        .max_speed = MAX_SPEED,
+        .steering_angle = 0.f,
+        .steering_rate = STEERING_RATE
     };
 
     _body = { 
@@ -37,6 +46,11 @@ Vector2 Car::get_center()
 void Car::set_prev_state()
 {
     _prev_state = _curr_state;
+}
+
+void Car::control()
+{
+    /* handle input */
 }
 
 void Car::update(double dt)

@@ -26,10 +26,16 @@ public:
     void set_prev_state(void);
     Vector2 get_center(void);
 
+    void control(void);
+
 private:
     typedef struct {
         Vector2 center;
+        double speed;
+        double acceleration;
+        double max_speed;
         float steering_angle;
+        float steering_rate;
     } Car_State;
 
     Track *_track;
@@ -38,5 +44,6 @@ private:
     Rectangle _body;
     Color _color;
 };
+
 
 #endif // !CAR_HPP

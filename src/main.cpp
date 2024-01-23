@@ -53,13 +53,12 @@ int main(void)
         accumulator += frame_time;
 
 
-        /* handle input */
+        car.control();
 
 
         while ( accumulator >= dt )
         {
-            
-            /* update car state */
+            car.update(dt);
 
             accumulator -= dt;
         }
