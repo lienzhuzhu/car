@@ -5,7 +5,6 @@
 #ifndef CAR_HPP
 #define CAR_HPP
 
-#include <raylib.h>
 #include <raylib/raylib.h>
 #include "Track.hpp"
 
@@ -22,7 +21,7 @@ public:
     Car &operator=(const Car &) = default;
     ~Car() = default;
 
-    void update();
+    void update(double dt);
     void render(double remainder);
     void set_prev_state(void);
     Vector2 get_center(void);

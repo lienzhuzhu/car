@@ -3,8 +3,8 @@
  */
 
 
-#include "global.hpp"
 #include <raylib.h>
+#include "global.hpp"
 
 
 Vector2 get_direction()

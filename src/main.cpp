@@ -2,27 +2,43 @@
  * Driver code
  */
 
+
 #include <chrono>
 #include <raylib.h>
 
 #include "global.hpp"
-#include "Ball.hpp"
+#include "Car.hpp"
+#include "Track.hpp"
 
+
+void draw_guides()
+{
+    DrawRectangleV({10.f, 10.f}, {10.f, 10.f}, RED);
+    DrawRectangleV({GetScreenWidth()-20.f, 10.f}, {10.f, 10.f}, BLUE);
+    DrawRectangleV({10.f, GetScreenHeight()-20.f}, {10.f, 10.f}, BLUE);
+    DrawRectangleV({GetScreenWidth()-20.f, GetScreenHeight()-20.f}, {10.f, 10.f}, RED);
+
+    DrawLineV({SCREEN_CENTER_X, 0}, {SCREEN_CENTER_X, GetScreenHeight()*1.f}, BLACK);
+    DrawLineV({0, SCREEN_CENTER_Y}, {GetScreenWidth()*1.f, SCREEN_CENTER_Y}, BLACK);
+}
 
 int main(void)
 {
     SetTraceLogLevel(LOG_WARNING);
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Evolution Simulation");
 
+
     double dt = 1.f / TARGET_FPS;
     std::chrono::time_point prev_time_point = std::chrono::high_resolution_clock::now();
     double accumulator = 0.0;
 
-    Ball ball;
+    Track track;
+    Car car(&track);
 
     Camera2D camera = { 0 };
-    camera.target = (Vector2){ ball.get_position().x, ball.get_position().y };
-    camera.offset = (Vector2){ GetScreenWidth()/2.0f, GetScreenHeight()/2.0f };
+    
+    camera.target = car.get_center();
+    camera.offset = (Vector2){ GetScreenWidth()/2.f, GetScreenHeight()/2.f };
     camera.rotation = 0.0f;
     camera.zoom = 1.0f;
 
@@ -37,16 +53,15 @@ int main(void)
 
         accumulator += frame_time;
 
-        Vector2 direction = get_direction();
+        //Vector2 direction = get_direction();
 
         while ( accumulator >= dt )
         {
-            ball.set_prev_state();
-            ball.update(direction, 100.f, dt);
+            /* update car state */
             accumulator -= dt;
         }
 
-        camera.target = (Vector2){ ball.get_position().x, ball.get_position().y };
+        camera.target = car.get_center();
 
         BeginDrawing();
 
@@ -54,12 +69,8 @@ int main(void)
 
             BeginMode2D(camera);
 
-                DrawRectangleV({10.f, 10.f}, {10.f, 10.f}, RED);
-                DrawRectangleV({GetScreenWidth()-20.f, 10.f}, {10.f, 10.f}, BLUE);
-                DrawRectangleV({10.f, GetScreenHeight()-20.f}, {10.f, 10.f}, BLUE);
-                DrawRectangleV({GetScreenWidth()-20.f, GetScreenHeight()-20.f}, {10.f, 10.f}, RED);
-
-                ball.render(accumulator / dt);
+                draw_guides();
+                car.render(accumulator / dt);
 
             EndMode2D();
 

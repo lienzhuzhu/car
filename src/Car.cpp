@@ -2,25 +2,24 @@
  * Car class definition
  */
 
-
-#include "Car.hpp"
-#include <raylib.h>
 #include <raylib/raylib.h>
+#include "global.hpp"
+#include "Car.hpp"
 
 
 Car::Car(Track *track) : _color(RED), _track(track)
 {
     _body = { 
-        .x = GetScreenWidth()/2.f - CAR_WIDTH/2.f,
-        .y = GetScreenHeight()/2.f - CAR_LENGTH/2.f,
+        .x = SCREEN_CENTER_X,
+        .y = SCREEN_CENTER_Y,
         .width = CAR_WIDTH,
         .height = CAR_LENGTH
     };
 
     _curr_state = {
         .center = {
-            CAR_WIDTH/2.f,
-            CAR_LENGTH/2.f
+            SCREEN_CENTER_X,
+            SCREEN_CENTER_Y
         },
         .steering_angle = 0.f
     };
@@ -35,7 +34,12 @@ Vector2 Car::get_center()
 
 void Car::render(double remainder)
 {
-    DrawRectanglePro(_body, _curr_state.center, _curr_state.steering_angle, _color);
+    DrawRectanglePro(_body, {CAR_WIDTH/2.f, CAR_LENGTH/2.f}, _curr_state.steering_angle, _color);
+}
+
+void Car::update(double dt)
+{
+
 }
 
 void Car::set_prev_state()
