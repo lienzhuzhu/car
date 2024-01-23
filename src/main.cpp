@@ -50,14 +50,17 @@ int main(void)
             frame_time = 1.f/MIN_FPS;
         }
         prev_time_point = curr_time_point;
-
         accumulator += frame_time;
 
-        //Vector2 direction = get_direction();
+
+        /* handle input */
+
 
         while ( accumulator >= dt )
         {
+            
             /* update car state */
+
             accumulator -= dt;
         }
 
