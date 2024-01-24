@@ -26,7 +26,6 @@ Car::Car(Track *track) : _color(RED), _track(track)
     _body = { 
         .x = SCREEN_CENTER_X, // NOTE: start the car in the center of the screen for now
         .y = SCREEN_CENTER_Y,
-
         .width = CAR_WIDTH,
         .height = CAR_LENGTH
     };
