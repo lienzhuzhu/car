@@ -31,11 +31,11 @@ public:
 private:
     typedef struct {
         Vector2 center;
-        double speed;
-        double acceleration;
-        double max_speed;
-        float steering_angle;
-        float steering_rate;
+        double  speed;
+        double  acceleration;
+        double  max_speed;
+        float   steering_angle;
+        float   steering_rate;
     } Car_State;
 
     Track *_track;

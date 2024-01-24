@@ -2,6 +2,7 @@
  * Car class definition
  */
 
+#include <raylib.h>
 #include <raylib/raylib.h>
 #include "global.hpp"
 #include "Car.hpp"
@@ -51,6 +52,22 @@ void Car::set_prev_state()
 void Car::control()
 {
     /* handle input */
+    if (IsKeyDown(KEY_UP)) {
+            /* accelerate */
+    }
+    if (IsKeyDown(KEY_DOWN)) {
+        /* negative accelerate */
+    }
+
+    if (IsKeyDown(KEY_LEFT)) {
+        /* rotate counter clockwise */
+    }
+    if (IsKeyDown(KEY_RIGHT)) {
+        /* rotate clockwise */
+    }
+
+    /* clamp speed and rotation? */
+
 }
 
 void Car::update(double dt)
