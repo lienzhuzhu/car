@@ -16,10 +16,6 @@
 Car::Car(Track *track) : _color(RED), _track(track)
 {
     _curr_state = {
-        .center = {
-            SCREEN_CENTER_X,
-            SCREEN_CENTER_Y
-        },
         .speed = 0.f,
         .acceleration = ACCELERATION_RATE,
         .max_speed = MAX_SPEED,
@@ -28,8 +24,8 @@ Car::Car(Track *track) : _color(RED), _track(track)
     };
 
     _body = { 
-        .x = _curr_state.center.x, // NOTE: start the car in the center of the screen for now
-        .y = _curr_state.center.y,
+        .x = SCREEN_CENTER_X, // NOTE: start the car in the center of the screen for now
+        .y = SCREEN_CENTER_Y,
 
         .width = CAR_WIDTH,
         .height = CAR_LENGTH
@@ -60,10 +56,10 @@ void Car::control()
     }
 
     if (IsKeyDown(KEY_LEFT)) {
-        /* rotate counter clockwise */
+        /* rotate negative direction */
     }
     if (IsKeyDown(KEY_RIGHT)) {
-        /* rotate clockwise */
+        /* rotate positive direction */
     }
 
     /* clamp speed and rotation? */

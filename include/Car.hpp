@@ -30,7 +30,6 @@ public:
 
 private:
     typedef struct {
-        Vector2 center;
         double  speed;
         double  acceleration;
         double  max_speed;
