@@ -21,12 +21,12 @@ public:
     Car &operator=(const Car &) = default;
     ~Car() = default;
 
+    void control(void);
+    void set_prev_state(void);
     void update(double dt);
     void render(float remain);
-    void set_prev_state(void);
     Vector2 get_center(void);
-
-    void control(void);
+    double get_fitness(void);
 
 private:
     typedef struct {
