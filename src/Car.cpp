@@ -70,6 +70,8 @@ void Car::control()
 
 void Car::update(double dt)
 {
+    set_prev_state();
+
     // NOTE:    sinf() and cosf() are switched from their usual coordinate associations because 
     //          I consider the long side aligned with the y axis as the 0 degree orientation 
     _body.x -= _curr_state.speed * dt * sinf(DEG2RAD * _curr_state.steering_angle);
@@ -78,9 +80,6 @@ void Car::update(double dt)
 
 void Car::render(double remainder)
 {
-
-
-
     Vector2 render_origin = {CAR_WIDTH/2.f, CAR_LENGTH/2.f}; // NOTE: even though the _body Rectangle 
                                                              // specifies top left corner, setting 
                                                              // center in DrawRectanglePro() draws 
