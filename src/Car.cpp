@@ -30,7 +30,6 @@ Car::Car(Track *track) : _color(RED), _track(track)
         .height = CAR_LENGTH
     };
 
-
     set_prev_state();
 }
 
