@@ -8,9 +8,9 @@
 #include "Car.hpp"
 
 
-#define ACCELERATION_RATE   5.f
-#define MAX_SPEED           150.f
-#define STEERING_RATE       1.f
+#define ACCELERATION_RATE   0.5f
+#define MAX_SPEED           600.f
+#define STEERING_RATE       0.05f
 
 
 Car::Car(Track *track) : _color(RED), _track(track)
@@ -48,26 +48,36 @@ void Car::control()
 {
     /* handle input */
     if (IsKeyDown(KEY_UP)) {
-            /* accelerate */
+        _curr_state.speed -= ACCELERATION_RATE;
     }
     if (IsKeyDown(KEY_DOWN)) {
-        /* negative accelerate */
+        _curr_state.speed += ACCELERATION_RATE;
     }
 
     if (IsKeyDown(KEY_LEFT)) {
-        /* rotate negative direction */
+        _curr_state.steering_angle -= STEERING_RATE;
     }
     if (IsKeyDown(KEY_RIGHT)) {
-        /* rotate positive direction */
+        _curr_state.steering_angle += STEERING_RATE;
     }
 
     /* clamp speed and rotation? */
+    if (_curr_state.speed > MAX_SPEED) {
+        _curr_state.speed = MAX_SPEED;
+    }
+    if (_curr_state.speed < -MAX_SPEED) {
+        _curr_state.speed = -MAX_SPEED;
+    }
+
 
 }
 
 void Car::update(double dt)
 {
-    /* move the center according to velocity and steering angle */
+    // NOTE:    sinf() and cosf() are switched from their usual coordinate associations because 
+    //          I consider the long side aligned with the y axis as the 0 degree orientation 
+    _body.x -= _curr_state.speed * dt * sinf(DEG2RAD * _curr_state.steering_angle);
+    _body.y += _curr_state.speed * dt * cosf(DEG2RAD * _curr_state.steering_angle);
 }
 
 void Car::render(double remainder)
