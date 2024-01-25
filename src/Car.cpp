@@ -47,28 +47,25 @@ void Car::control()
 {
     /* handle input */
     if (IsKeyDown(KEY_UP)) {
-        _curr_state.speed -= ACCELERATION_RATE;
+        _curr_state.speed -= _curr_state.acceleration;
     }
     if (IsKeyDown(KEY_DOWN)) {
-        _curr_state.speed += ACCELERATION_RATE;
+        _curr_state.speed += _curr_state.acceleration;
     }
 
     if (IsKeyDown(KEY_LEFT)) {
-        _curr_state.steering_angle -= STEERING_RATE;
+        _curr_state.steering_angle -= _curr_state.steering_rate;
     }
     if (IsKeyDown(KEY_RIGHT)) {
-        _curr_state.steering_angle += STEERING_RATE;
+        _curr_state.steering_angle += _curr_state.steering_rate;
     }
 
-    /* clamp speed and rotation? */
-    if (_curr_state.speed > MAX_SPEED) {
-        _curr_state.speed = MAX_SPEED;
+    if (_curr_state.speed > _curr_state.max_speed) {
+        _curr_state.speed = _curr_state.max_speed;
     }
-    if (_curr_state.speed < -MAX_SPEED) {
-        _curr_state.speed = -MAX_SPEED;
+    if (_curr_state.speed < -_curr_state.max_speed) {
+        _curr_state.speed = -_curr_state.max_speed;
     }
-
-
 }
 
 void Car::update(double dt)
@@ -81,9 +78,13 @@ void Car::update(double dt)
 
 void Car::render(double remainder)
 {
+
+
+
     Vector2 render_origin = {CAR_WIDTH/2.f, CAR_LENGTH/2.f}; // NOTE: even though the _body Rectangle 
                                                              // specifies top left corner, setting 
                                                              // center in DrawRectanglePro() draws 
                                                              // outward from that center
+
     DrawRectanglePro(_body, render_origin, _curr_state.steering_angle, _color);
 }
