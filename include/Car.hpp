@@ -22,7 +22,7 @@ public:
     ~Car() = default;
 
     void update(double dt);
-    void render(double remainder);
+    void render(float remain);
     void set_prev_state(void);
     Vector2 get_center(void);
 
@@ -30,6 +30,8 @@ public:
 
 private:
     typedef struct {
+        float  x;
+        float  y;
         double  speed;
         double  acceleration;
         double  max_speed;
