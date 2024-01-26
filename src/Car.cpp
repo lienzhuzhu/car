@@ -2,7 +2,7 @@
  * Car class definition
  */
 
-#include <cmath>
+//#include <cmath> // NOTE: not sure which header already includes this one
 #include <raylib.h>
 #include <raylib/raylib.h>
 #include "global.hpp"
@@ -28,7 +28,7 @@ Car::Car(Track *track) : _color(RED), _track(track)
 
     _body = { 
         .x = _curr_state.x, // NOTE: start the car in the center of the screen for now
-        .y = _curr_state.y,
+        .y = _curr_state.y, 
         .width = CAR_WIDTH,
         .height = CAR_LENGTH
     };

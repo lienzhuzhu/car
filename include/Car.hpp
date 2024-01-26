@@ -42,7 +42,7 @@ private:
     Track *_track;
     Car_State _curr_state;
     Car_State _prev_state; // for render interpolation
-    Rectangle _body;
+    Rectangle _body; // NOTE: deliberating whether this is even necessary
     Color _color;
 };
 
