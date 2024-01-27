@@ -8,9 +8,10 @@
 #include <raylib/raylib.h>
 
 
-#define NUM_POINTS  5
-#define MIN_LENGTH  20
-#define MAX_LENGTH  50
+#define NUM_POINTS  30
+#define MIN_LENGTH  200
+#define MAX_LENGTH  500
+#define MAX_ANGLE   90
 
 
 class Track {
