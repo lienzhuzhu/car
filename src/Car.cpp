@@ -90,10 +90,18 @@ void Car::render(float remain)
     rendered_body.x = _prev_state.x + remain * (_curr_state.x - _prev_state.x);
     rendered_body.y = _prev_state.y + remain * (_curr_state.y - _prev_state.y);
 
-    Vector2 render_origin = {CAR_WIDTH/2.f, CAR_LENGTH/2.f}; // NOTE: even though the _body Rectangle 
-                                                             // specifies top left corner, setting 
-                                                             // center in DrawRectanglePro() draws 
-                                                             // outward from that center
+    // NOTE:    Even though the _body Rectangle specifies top left corner, setting     
+    //          center in DrawRectanglePro() draws outward from that center               
+    Vector2 render_origin = {CAR_WIDTH/2.f, CAR_LENGTH/2.f}; 
 
     DrawRectanglePro(_body, render_origin, rendered_angle, _color);
+}
+
+double Car::get_fitness()
+{
+    double fitness = 0;
+
+    /* calculate distance traveled along track */
+
+    return fitness;
 }
