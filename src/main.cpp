@@ -4,7 +4,6 @@
 
 
 #include <chrono>
-#include <raylib.h>
 
 #include "global.hpp"
 #include "Car.hpp"
@@ -72,6 +71,7 @@ int main(void)
             BeginMode2D(camera);
 
                 draw_guides();
+                track.draw_track();
                 car.render(accumulator / dt);
 
             EndMode2D();

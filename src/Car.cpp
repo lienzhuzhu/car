@@ -3,14 +3,12 @@
  */
 
 //#include <cmath> // NOTE: not sure which header already includes this one
-#include <raylib.h>
-#include <raylib/raylib.h>
 #include "global.hpp"
 #include "Car.hpp"
 
 
-#define ACCELERATION_RATE   0.5f
-#define MAX_SPEED           600.f
+#define ACCELERATION_RATE   0.25f
+#define MAX_SPEED           800.f
 #define STEERING_RATE       0.05f
 
 
