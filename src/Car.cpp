@@ -4,6 +4,8 @@
 
 //#include <cmath> // NOTE: not sure which header already includes this one
 #include "global.hpp"
+#include <cmath>
+#include <raylib/raylib.h>
 #include "Car.hpp"
 
 
@@ -80,6 +82,8 @@ void Car::update(double dt)
     _curr_state.y += _curr_state.speed * dt * cosf(DEG2RAD * _curr_state.steering_angle);
     _body.x = _curr_state.x;
     _body.y = _curr_state.y;
+
+    //calculate_corners();
 }
 
 void Car::render(float remain)
@@ -95,6 +99,9 @@ void Car::render(float remain)
     Vector2 render_origin = {CAR_WIDTH/2.f, CAR_LENGTH/2.f}; 
 
     DrawRectanglePro(_body, render_origin, rendered_angle, _color);
+
+    DrawCircleV({_body.x,_body.y}, 5.f, BLUE);
+    draw_corners();
 }
 
 double Car::get_fitness()
@@ -104,4 +111,24 @@ double Car::get_fitness()
     /* calculate distance traveled along track */
 
     return fitness;
+}
+
+void Car::calculate_corners()
+{
+    /* NOTE: remember angles are rotated 90 degrees */
+
+    float theta = _curr_state.steering_angle;
+    float hypotenuse = sqrtf(_body.width * _body.width + _body.height * _body.height);
+
+    float x_comp = sinf(theta) * hypotenuse;
+    float y_comp = cosf(theta) * hypotenuse;
+
+    _corners[0] = {_curr_state.x - x_comp, _curr_state.y - y_comp};
+    _corners[0] = {_curr_state.x - x_comp, _curr_state.y + y_comp};
+    _corners[0] = {_curr_state.x + x_comp, _curr_state.y - y_comp};
+    _corners[0] = {_curr_state.x + x_comp, _curr_state.y + y_comp};
+}
+
+void Car::draw_corners()
+{
 }

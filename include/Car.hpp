@@ -6,10 +6,10 @@
 #define CAR_HPP
 
 #include <raylib/raylib.h>
-#include "Track.hpp"
 
 #define CAR_WIDTH   30.f
 #define CAR_LENGTH  60.f
+#define NUM_CORNERS 4
 
 class Car {
 public:
@@ -26,6 +26,8 @@ public:
     void render(float remain);
     Vector2 get_center(void);
     double get_fitness(void);
+    void calculate_corners(void);
+    void draw_corners(void);
 
 private:
     typedef struct {
@@ -42,6 +44,7 @@ private:
     Car_State _prev_state; // for render interpolation
     Rectangle _body; // NOTE: deliberating whether this is even necessary
     Color _color;
+    Vector2 _corners[NUM_CORNERS];
 };
 
 
