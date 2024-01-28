@@ -83,7 +83,7 @@ void Car::update(double dt)
     _body.x = _curr_state.x;
     _body.y = _curr_state.y;
 
-    //calculate_corners();
+    calculate_corners();
 }
 
 void Car::render(float remain)
@@ -124,11 +124,15 @@ void Car::calculate_corners()
     float y_comp = cosf(theta) * hypotenuse;
 
     _corners[0] = {_curr_state.x - x_comp, _curr_state.y - y_comp};
-    _corners[0] = {_curr_state.x - x_comp, _curr_state.y + y_comp};
-    _corners[0] = {_curr_state.x + x_comp, _curr_state.y - y_comp};
-    _corners[0] = {_curr_state.x + x_comp, _curr_state.y + y_comp};
+    _corners[1] = {_curr_state.x - x_comp, _curr_state.y + y_comp};
+    _corners[2] = {_curr_state.x + x_comp, _curr_state.y - y_comp};
+    _corners[3] = {_curr_state.x + x_comp, _curr_state.y + y_comp};
 }
 
 void Car::draw_corners()
 {
+    for (int i = 0; i < NUM_CORNERS; ++i)
+    {
+        DrawCircleV(_corners[i], 6.f, BLUE);
+    }
 }
