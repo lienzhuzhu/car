@@ -38,7 +38,7 @@ Car::Car() : _color(RED)
 
 Vector2 Car::get_center()
 {
-    return { _body.x, _body.y };
+    return { _curr_state.x, _curr_state.y };
 }
 
 void Car::set_prev_state()
@@ -118,7 +118,7 @@ void Car::calculate_corners()
     /* NOTE: remember angles are rotated 90 degrees */
 
     float theta = _curr_state.steering_angle;
-    float hypotenuse = sqrtf(_body.width * _body.width + _body.height * _body.height);
+    float hypotenuse = sqrtf( 0.25f * _body.width * _body.width + 0.25 * _body.height * _body.height);
 
     float x_comp = sinf(theta) * hypotenuse;
     float y_comp = cosf(theta) * hypotenuse;
