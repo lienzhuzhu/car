@@ -4,6 +4,7 @@
 
 
 #include <chrono>
+#include <raylib/raylib.h>
 
 #include "global.hpp"
 #include "Car.hpp"
@@ -17,8 +18,20 @@ void draw_guides()
     DrawRectangleV({10.f, GetScreenHeight()-20.f}, {10.f, 10.f}, BLUE);
     DrawRectangleV({GetScreenWidth()-20.f, GetScreenHeight()-20.f}, {10.f, 10.f}, RED);
 
-    DrawLineV({SCREEN_CENTER_X, 0}, {SCREEN_CENTER_X, GetScreenHeight()*1.f}, BLACK);
-    DrawLineV({0, SCREEN_CENTER_Y}, {GetScreenWidth()*1.f, SCREEN_CENTER_Y}, BLACK);
+    //DrawLineV({SCREEN_CENTER_X, 0}, {SCREEN_CENTER_X, GetScreenHeight()*1.f}, BLACK);
+    //DrawLineV({0, SCREEN_CENTER_Y}, {GetScreenWidth()*1.f, SCREEN_CENTER_Y}, BLACK);
+
+    Vector2 points[4] = {
+        {SCREEN_CENTER_X - SCREEN_CENTER_X / 2.f, SCREEN_CENTER_Y - SCREEN_CENTER_Y / 2.f},
+        {SCREEN_CENTER_X + SCREEN_CENTER_X / 2.f, SCREEN_CENTER_Y - SCREEN_CENTER_Y / 2.f},
+        {SCREEN_CENTER_X - SCREEN_CENTER_X / 2.f, SCREEN_CENTER_Y + SCREEN_CENTER_Y / 2.f},
+        {SCREEN_CENTER_X + SCREEN_CENTER_X / 2.f, SCREEN_CENTER_Y + SCREEN_CENTER_Y / 2.f},
+    };
+
+    DrawLineV(points[0], points[1], BLACK);
+    DrawLineV(points[0], points[2], BLACK);
+    DrawLineV(points[1], points[3], BLACK);
+    DrawLineV(points[2], points[3], BLACK);
 }
 
 int main(void)
@@ -32,7 +45,7 @@ int main(void)
     double accumulator = 0.0;
 
     Track track;
-    Car car(&track);
+    Car car;
 
     Camera2D camera = { 0 };
     
@@ -71,7 +84,6 @@ int main(void)
             BeginMode2D(camera);
 
                 draw_guides();
-                track.draw_track();
                 car.render(accumulator / dt);
 
             EndMode2D();

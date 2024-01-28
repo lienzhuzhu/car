@@ -12,7 +12,7 @@
 #define STEERING_RATE       0.05f
 
 
-Car::Car(Track *track) : _color(RED), _track(track)
+Car::Car() : _color(RED)
 {
     _curr_state = {
         .x = SCREEN_CENTER_X,

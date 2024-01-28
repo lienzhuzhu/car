@@ -13,8 +13,7 @@
 
 class Car {
 public:
-    Car() = default;
-    Car(Track *track);
+    Car();
     Car(Car &&) = default;
     Car(const Car &) = default;
     Car &operator=(Car &&) = default;
@@ -39,7 +38,6 @@ private:
         float   steering_rate;
     } Car_State;
 
-    Track *_track;
     Car_State _curr_state;
     Car_State _prev_state; // for render interpolation
     Rectangle _body; // NOTE: deliberating whether this is even necessary
