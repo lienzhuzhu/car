@@ -6,6 +6,7 @@
 #include "global.hpp"
 #include <cmath>
 #include <raylib/raylib.h>
+#include <runetype.h>
 #include "Car.hpp"
 
 
@@ -92,17 +93,12 @@ void Car::render(float remain)
 {
     float rendered_angle = _prev_state.steering_angle + remain * (_curr_state.steering_angle - _prev_state.steering_angle);
 
-    Rectangle rendered_body = _body;
-    rendered_body.x = _prev_state.x + remain * (_curr_state.x - _prev_state.x);
-    rendered_body.y = _prev_state.y + remain * (_curr_state.y - _prev_state.y);
-
     // NOTE:    Even though the _body Rectangle specifies top left corner, setting     
     //          center in DrawRectanglePro() draws outward from that center               
     Vector2 render_origin = {CAR_WIDTH/2.f, CAR_LENGTH/2.f}; 
 
     DrawRectanglePro(_body, render_origin, rendered_angle, _color);
-
-    DrawCircleV({_body.x,_body.y}, 5.f, BLUE);
+    DrawCircleV({_curr_state.x, _curr_state.y}, 5.f, BLUE);
     draw_corners();
 }
 
