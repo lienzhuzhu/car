@@ -26,6 +26,7 @@ public:
     void render(float remain);
     Vector2 get_center(void);
     double get_fitness(void);
+    void initialize_corners(void);
     void calculate_corners(void);
     void draw_corners(void);
 
@@ -42,7 +43,7 @@ private:
 
     Car_State _curr_state;
     Car_State _prev_state; // for render interpolation
-    Rectangle _body; // NOTE: deliberating whether this is even necessary
+    Rectangle _body; // TODO: remove this member
     Color _color;
     Vector2 _corners[NUM_CORNERS];
 };

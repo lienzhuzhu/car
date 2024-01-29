@@ -28,12 +28,14 @@ Car::Car() : _color(RED)
         .steering_rate = STEERING_RATE
     };
 
-    _body = { 
+    _body = {  // TODO: remove this member
         .x = _curr_state.x, // NOTE: start the car in the center of the screen for now
         .y = _curr_state.y, 
         .width = CAR_WIDTH,
         .height = CAR_LENGTH
     };
+
+    initialize_corners();
 
     set_prev_state();
 }
@@ -100,7 +102,7 @@ void Car::render(float remain)
 
     DrawRectanglePro(_body, render_origin, rendered_angle, _color);
     DrawCircleV({_curr_state.x, _curr_state.y}, 5.f, BLUE);
-    //draw_corners();
+    draw_corners();
 }
 
 double Car::get_fitness()
@@ -112,15 +114,21 @@ double Car::get_fitness()
     return fitness;
 }
 
+void Car::initialize_corners()
+{
+    float hypotenuse = sqrtf( 0.25f * _body.width * _body.width + 0.25 * _body.height * _body.height ); // distance from center to each corner is the same
+    _corners[0] = { _curr_state.x - CAR_WIDTH * 0.5f, _curr_state.y - CAR_LENGTH * 0.5f };
+    _corners[1] = { _curr_state.x - CAR_WIDTH * 0.5f, _curr_state.y + CAR_LENGTH * 0.5f };
+    _corners[2] = { _curr_state.x + CAR_WIDTH * 0.5f, _curr_state.y - CAR_LENGTH * 0.5f };
+    _corners[3] = { _curr_state.x + CAR_WIDTH * 0.5f, _curr_state.y + CAR_LENGTH * 0.5f };
+}
+
 void Car::calculate_corners()
 {
     /* NOTE: remember angles are rotated 90 degrees */
 
     float theta = (_curr_state.steering_angle) * M_PI / 180.f;
-    float hypotenuse = sqrtf( 0.25f * _body.width * _body.width + 0.25 * _body.height * _body.height );
-
-    float x_comp = sinf(theta) * hypotenuse;
-    float y_comp = cosf(theta) * hypotenuse;
+    float hypotenuse = sqrtf( 0.25f * _body.width * _body.width + 0.25 * _body.height * _body.height ); // distance from center to each corner is the same
 }
 
 void Car::draw_corners()
