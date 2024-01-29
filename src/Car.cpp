@@ -56,11 +56,13 @@ void Car::control()
         _curr_state.speed += _curr_state.acceleration;
     }
 
+    int flip = _curr_state.speed > 0 ? -1 : 1;
+
     if (IsKeyDown(KEY_LEFT)) {
-        _curr_state.steering_angle -= _curr_state.steering_rate;
+        _curr_state.steering_angle -= _curr_state.steering_rate * flip;
     }
     if (IsKeyDown(KEY_RIGHT)) {
-        _curr_state.steering_angle += _curr_state.steering_rate;
+        _curr_state.steering_angle += _curr_state.steering_rate * flip;
     }
 
     if (_curr_state.speed > _curr_state.max_speed) {
@@ -117,8 +119,8 @@ void Car::calculate_corners()
 {
     /* NOTE: remember angles are rotated 90 degrees */
 
-    float theta = _curr_state.steering_angle;
-    float hypotenuse = sqrtf( 0.25f * _body.width * _body.width + 0.25 * _body.height * _body.height);
+    float theta = (_curr_state.steering_angle) * M_PI / 180.f;
+    float hypotenuse = sqrtf( 0.25f * _body.width * _body.width + 0.25 * _body.height * _body.height );
 
     float x_comp = sinf(theta) * hypotenuse;
     float y_comp = cosf(theta) * hypotenuse;
@@ -133,6 +135,6 @@ void Car::draw_corners()
 {
     for (int i = 0; i < NUM_CORNERS; ++i)
     {
-        DrawCircleV(_corners[i], 6.f, BLUE);
+        DrawCircleV(_corners[i], 4.f, BLUE);
     }
 }
