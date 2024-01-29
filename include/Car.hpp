@@ -39,13 +39,13 @@ private:
         double  max_speed;
         float   steering_angle;
         float   steering_rate;
+        Vector2 corners[NUM_CORNERS];
     } Car_State;
 
     Car_State _curr_state;
     Car_State _prev_state; // for render interpolation
     Rectangle _body; // TODO: remove this member
     Color _color;
-    Vector2 _corners[NUM_CORNERS];
 };
 
 

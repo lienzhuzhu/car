@@ -117,10 +117,10 @@ double Car::get_fitness()
 void Car::initialize_corners()
 {
     float hypotenuse = sqrtf( 0.25f * _body.width * _body.width + 0.25 * _body.height * _body.height ); // distance from center to each corner is the same
-    _corners[0] = { _curr_state.x - CAR_WIDTH * 0.5f, _curr_state.y - CAR_LENGTH * 0.5f };
-    _corners[1] = { _curr_state.x - CAR_WIDTH * 0.5f, _curr_state.y + CAR_LENGTH * 0.5f };
-    _corners[2] = { _curr_state.x + CAR_WIDTH * 0.5f, _curr_state.y - CAR_LENGTH * 0.5f };
-    _corners[3] = { _curr_state.x + CAR_WIDTH * 0.5f, _curr_state.y + CAR_LENGTH * 0.5f };
+    _curr_state.corners[0] = { _curr_state.x - CAR_WIDTH * 0.5f, _curr_state.y - CAR_LENGTH * 0.5f };
+    _curr_state.corners[1] = { _curr_state.x - CAR_WIDTH * 0.5f, _curr_state.y + CAR_LENGTH * 0.5f };
+    _curr_state.corners[2] = { _curr_state.x + CAR_WIDTH * 0.5f, _curr_state.y - CAR_LENGTH * 0.5f };
+    _curr_state.corners[3] = { _curr_state.x + CAR_WIDTH * 0.5f, _curr_state.y + CAR_LENGTH * 0.5f };
 }
 
 void Car::calculate_corners()
@@ -135,6 +135,6 @@ void Car::draw_corners()
 {
     for (int i = 0; i < NUM_CORNERS; ++i)
     {
-        DrawCircleV(_corners[i], 4.f, BLUE);
+        DrawCircleV(_curr_state.corners[i], 4.f, BLUE);
     }
 }
