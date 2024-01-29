@@ -5,6 +5,7 @@
 //#include <cmath> // NOTE: not sure which header already includes this one
 #include "global.hpp"
 #include <cmath>
+#include <iostream>
 #include <raylib/raylib.h>
 #include <runetype.h>
 #include "Car.hpp"
@@ -99,7 +100,7 @@ void Car::render(float remain)
 
     DrawRectanglePro(_body, render_origin, rendered_angle, _color);
     DrawCircleV({_curr_state.x, _curr_state.y}, 5.f, BLUE);
-    draw_corners();
+    //draw_corners();
 }
 
 double Car::get_fitness()
@@ -120,11 +121,6 @@ void Car::calculate_corners()
 
     float x_comp = sinf(theta) * hypotenuse;
     float y_comp = cosf(theta) * hypotenuse;
-
-    _corners[0] = {_curr_state.x - x_comp, _curr_state.y - y_comp};
-    _corners[1] = {_curr_state.x - x_comp, _curr_state.y + y_comp};
-    _corners[2] = {_curr_state.x + x_comp, _curr_state.y - y_comp};
-    _corners[3] = {_curr_state.x + x_comp, _curr_state.y + y_comp};
 }
 
 void Car::draw_corners()
